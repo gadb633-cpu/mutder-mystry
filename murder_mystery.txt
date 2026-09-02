@@ -1,1 +1,10 @@
-
+בדיקת דוח בית חולים מי מת
+SELECT * FROM `hospital_report`
+WHERE diagnosis LIKE "%dead%";
+איפה ומתי ביקר אדם 17
+SELECT *
+FROM visits
+WHERE personid = "17";
+בודק מי נמצא בחדר 8 בתוך שעות מסוימות
+SELECT * FROM visits
+WHERE roomid = "8" and timeOfEntry < "2025-06-02 18:20:00" and timeOfLeaving > "2025-06-02 17:55:00" GROUP by personid;
