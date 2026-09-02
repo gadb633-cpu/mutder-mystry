@@ -21,6 +21,7 @@ ON v.personId = pb.personId
 WHERE (v.personid = "13" or v.personid = "25" or v.personid = "41" or v.personid = "50") AND v.roomId = "8"
 GROUP by v.personid;
 5. חייב להיות שהוא מת ב חדר 8 כי בדוח בית חולים רשום שהוא מת ב 18:20 והוא לא היה בשעתיים לפני בשום חדר אחר
+שאר החשודים שהיו בחדר 8 בזמן ש17 היה שם אין להם כלי נשק ששייכים להם שיכולים לדקור
 6. בדיקת מניע בין מספר 41 ל17
 SELECT * 
 FROM journal
@@ -33,4 +34,6 @@ WHERE authorId = "17" and subjectId = "41";
 SELECT *
 FROM people
 WHERE id = "41" or id = "17";
-9. 
+9. לפי דוח בית חולים מספר 6 ומספר 44 גם נהרגו אבל אין להם דוח ביקור בטירה
+10. ומספר 28 מת בהתקף לב פתאומי
+
