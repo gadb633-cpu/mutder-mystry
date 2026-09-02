@@ -59,3 +59,4 @@ GROUP by v.personid;
 SELECT *
 FROM room_objects 
 WHERE (roomid = "2" or roomid = "9") and (objectId = "69" or objectId = "143");
+15. לא קיים
