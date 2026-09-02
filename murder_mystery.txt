@@ -1,6 +1,7 @@
 בדיקת דוח בית חולים מי מת .1
 SELECT * FROM `hospital_report`
 WHERE diagnosis LIKE "%dead%";
+17 מת מדקירה זה חשוד לרצח
 איפה ומתי ביקר אדם 2.17
 SELECT *
 FROM visits
@@ -20,3 +21,16 @@ ON v.personId = pb.personId
 WHERE (v.personid = "13" or v.personid = "25" or v.personid = "41" or v.personid = "50") AND v.roomId = "8"
 GROUP by v.personid;
 5. חייב להיות שהוא מת ב חדר 8 כי בדוח בית חולים רשום שהוא מת ב 18:20 והוא לא היה בשעתיים לפני בשום חדר אחר
+6. בדיקת מניע בין מספר 41 ל17
+SELECT * 
+FROM journal
+WHERE authorId = "41" and subjectId = "17";
+SELECT * 
+FROM journal
+WHERE authorId = "17" and subjectId = "41";
+7. קיים מניע כיון שתיאו הפריע לקלרה לישון וזה בגדר נמות ולא נתגייס
+8. הרוצח שרצח את תיאו מספר 17 היא קלרה מספר 41
+SELECT *
+FROM people
+WHERE id = "41" or id = "17";
+9. 
