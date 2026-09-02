@@ -1,10 +1,22 @@
-בדיקת דוח בית חולים מי מת
+בדיקת דוח בית חולים מי מת .1
 SELECT * FROM `hospital_report`
 WHERE diagnosis LIKE "%dead%";
-איפה ומתי ביקר אדם 17
+איפה ומתי ביקר אדם 2.17
 SELECT *
 FROM visits
 WHERE personid = "17";
-בודק מי נמצא בחדר 8 בתוך שעות מסוימות
+בודק מי נמצא בחדר 8 בתוך שעות מסוימות .3
 SELECT * FROM visits
 WHERE roomid = "8" and timeOfEntry < "2025-06-02 18:20:00" and timeOfLeaving > "2025-06-02 17:55:00" GROUP by personid;
+בודק למי שייך כלי נשק שדוקר והיה בחדר 8 בשעות שהקורבן היה שם.4
+SELECT *
+FROM(SELECT *
+	FROM objects 
+	WHERE isWeapon = "1" and (weaponType = "Stabbing" or weaponType = "Piercing")) as Stabbing_weapon
+JOIN people_belongings as pb
+ON Stabbing_weapon.objectId = pb.objectId
+JOIN visits as v
+ON v.personId = pb.personId 
+WHERE (v.personid = "13" or v.personid = "25" or v.personid = "41" or v.personid = "50") AND v.roomId = "8"
+GROUP by v.personid;
+5. חייב להיות שהוא מת ב חדר 8 כי בדוח בית חולים רשום שהוא מת ב 18:20 והוא לא היה בשעתיים לפני בשום חדר אחר
