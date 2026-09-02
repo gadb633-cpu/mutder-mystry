@@ -36,4 +36,26 @@ FROM people
 WHERE id = "41" or id = "17";
 9. לפי דוח בית חולים מספר 6 ומספר 44 גם נהרגו אבל אין להם דוח ביקור בטירה
 10. ומספר 28 מת בהתקף לב פתאומי
-
+11. בדיקה איפה מספר 28 היה בין 9:30 ל 11:30
+SELECT *
+FROM visits
+WHERE personid = "28";
+12. בדיקה מי היו איתו בחדר 2 או 9 בזמן שהוא היה שם
+SELECT * 
+FROM visits 
+WHERE (roomid = "9" or roomid = "2") and timeOfEntry < "2025-06-02 09:45:00" and timeOfLeaving > "2025-06-02 09:30:00" GROUP by personid;
+13. בדיקה אם למישהו משם שייך כלי נשק מסוג כימי שיכול לגרום להתקף לב
+SELECT * 
+FROM(SELECT * 
+     FROM objects 
+     WHERE isWeapon = "1" and weaponType = "Chemical") as Stabbing_weapon 
+JOIN people_belongings as pb 
+ON Stabbing_weapon.objectId = pb.objectId 
+JOIN visits as v 
+ON v.personId = pb.personId 
+WHERE (v.personid = "12" or v.personid = "33" or v.personid = "17") AND (v.roomId = "2" or v.roomId = "9") 
+GROUP by v.personid;
+14. בדיקה אם קיים בחדר סוג נשק כימי
+SELECT *
+FROM room_objects 
+WHERE (roomid = "2" or roomid = "9") and (objectId = "69" or objectId = "143");
